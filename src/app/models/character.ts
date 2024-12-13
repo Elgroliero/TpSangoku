@@ -12,6 +12,6 @@ export interface Character {
   image: string;
   affiliation: string;
   deletedAt: string | null;
-  originPlanet: Planet; // Inclure la planète d'origine
-  transformations: Transformation[]; // Inclure les transformations
+  originPlanet: Planet;
+  transformations: Transformation[];
 }

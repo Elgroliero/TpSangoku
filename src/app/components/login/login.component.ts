@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   public message?: string | null;
   public isSubmitted: boolean = false;
   public formLogin!: FormGroup;
+  @Input() isAuthenticated: boolean = false;
 
   constructor(private router: Router,
               private authService: AuthenticationService,
@@ -42,8 +43,20 @@ export class LoginComponent implements OnInit {
     if (this.formLogin.valid) {
       this.authService.logIn(this.formLogin.value.name)
       console.log(this.formLogin.value);
+      console.log("connecté en tant que : " + this.name);
+      this.GoToHome();
     } else {
       console.log("FORMULAIRE INVALIDE !")
     }
+  }
+  public login(){
+    this.authService.logIn('Mojotito');
+    this.authService.isAuthenticationLoaded.subscribe(result =>this.isAuthenticated = result);
+    this.name = this.authService.getName();
+    console.log("connecté en tant que : " + this.name);
+    this.GoToHome();
+  }
+  GoToHome() {
+    this.router.navigate(['/home']);
   }
 }

@@ -4,6 +4,7 @@ import {catchError, map, Observable, shareReplay, tap, throwError} from "rxjs";
 import {Character} from "../../models/character";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ import {HttpClientModule} from "@angular/common/http";
     NgForOf,
     HttpClientModule,
     AsyncPipe,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   providers: [CharacterRepositoryService],
   templateUrl: './home.component.html',

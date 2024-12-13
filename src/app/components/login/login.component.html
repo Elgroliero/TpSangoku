@@ -1,3 +1,18 @@
 <fieldset>
-  <legend></legend>
+  <div style="color: red" *ngIf="message">{{ message }}</div>
+  <form [formGroup]="formLogin" method="post" (ngSubmit)="SubmitForm()">
+    <label for="name">Pseudonyme :</label>
+    <input id="name" name="name" type="text" formControlName="name"><br>
+    @if(isSubmitted){
+      <span *ngIf="formLogin.get('name')?.errors?.['required']" class="error">Le pseudonyme est obligatoire.</span>
+      <span *ngIf="formLogin.get('name')?.errors?.['minlength']" class="error">Le pseudonyme doit faire au moins trois caractères.</span>
+    }
+    <label for="password">Mot de passe :</label>
+    <input id="password" name="password" type="password" formControlName="password"><br>
+    @if(isSubmitted){
+      <span *ngIf="formLogin.get('password')?.errors?.['required']" class="error">Le mot de passe est obligatoire.</span>
+      <span *ngIf="formLogin.get('password')?.errors?.['minlength']" class="error">Le mot de passe doit faire au moins 6 caractères.</span>
+    }
+    <input type="submit" value="Se connecter">
+  </form>
 </fieldset>

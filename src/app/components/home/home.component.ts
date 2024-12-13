@@ -4,6 +4,7 @@ import {catchError, map, Observable, shareReplay, tap, throwError} from "rxjs";
 import {Character} from "../../models/character";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ import {HttpClientModule} from "@angular/common/http";
     NgForOf,
     HttpClientModule,
     AsyncPipe,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   providers: [CharacterRepositoryService],
   templateUrl: './home.component.html',
@@ -25,11 +27,15 @@ export class HomeComponent implements OnInit {
   public currentPage: number = 1;
   public pageSize: number = 6;
   public totalPages: number = 1;
+  public selectedCharacter?: Character;
 
-  constructor(private characterRepositoryService: CharacterRepositoryService) { }
+
+  constructor(private characterRepositoryService: CharacterRepositoryService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loadCharacters();
+    this.checkCharacterDetail();
   }
 
   public loadCharacters(): void {
@@ -70,6 +76,13 @@ export class HomeComponent implements OnInit {
   public nextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.changePage(this.currentPage + 1);
+    }
+  }
+
+  private checkCharacterDetail() {
+    const characterId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (characterId) {
+      this.characterRepositoryService.getCharacter(+characterId).subscribe(character => this.selectedCharacter = character);
     }
   }
 }

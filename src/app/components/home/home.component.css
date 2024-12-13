@@ -1,0 +1,114 @@
+/* Général pour les cartes */
+.card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: contain;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-body {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Texte */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+}
+
+p {
+  margin-bottom: 0.5rem;
+}
+
+/* Grille */
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-md-4 {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Transformations */
+.card .card {
+  box-shadow: none; /* Supprime l'ombre des cartes imbriquées */
+  margin-bottom: 0; /* Supprime les marges */
+}
+
+.card .card-img-top {
+  height: 150px; /* Images plus petites pour les transformations */
+  object-fit: contain;
+}
+
+.card .card-body {
+  padding: 8px;
+}
+
+/* Bouton de retour */
+.btn {
+  font-size: 1rem;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+/* Pagination */
+.d-flex {
+  margin-top: 20px;
+}
+
+.d-flex .btn {
+  min-width: 100px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .card-img-top {
+    height: 150px; /* Réduit la hauteur des images sur mobile */
+  }
+
+  .card-body {
+    padding: 12px;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+}

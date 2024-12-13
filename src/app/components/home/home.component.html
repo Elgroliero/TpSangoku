@@ -1,1 +1,10 @@
-<p>home works!</p>
+<div *ngIf="characters$ | async as characters; else loading">
+  <div *ngFor="let character of characters">
+    <h2>{{ character.name }}</h2>
+    <img [src]="character.image" [alt]="character.name" />
+    <p>{{ character.description }}</p>
+  </div>
+</div>
+<ng-template #loading>
+  <p>Chargement des personnages...</p>
+</ng-template>

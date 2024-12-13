@@ -1,10 +1,20 @@
-<div *ngIf="characters$ | async as characters; else loading">
-  <div *ngFor="let character of characters">
-    <h2>{{ character.name }}</h2>
-    <img [src]="character.image" [alt]="character.name" />
-    <p>{{ character.description }}</p>
+<div *ngIf="paginatedCharacters$ | async as paginatedCharacters">
+  <div class="row">
+    <div *ngFor="let character of paginatedCharacters" class="col-md-4 mb-4">
+      <div class="card">
+        <img src="{{character.image}}" class="card-img-top" alt="Character Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ character.name }}</h5>
+          <p class="card-text">Race: {{ character.race }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<ng-template #loading>
-  <p>Chargement des personnages...</p>
-</ng-template>
+
+<div class="d-flex justify-content-between align-items-center mt-4">
+  <!-- Pagination with Bootstrap -->
+  <button (click)="previousPage()" class="btn btn-primary" [disabled]="currentPage === 1">Previous</button>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" class="btn btn-primary" [disabled]="currentPage === totalPages">Next</button>
+</div>

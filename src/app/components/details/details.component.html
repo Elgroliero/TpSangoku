@@ -1,1 +1,34 @@
-<p>details works!</p>
+<div *ngIf="character">
+  <div class="card">
+    <img [src]="character.image" class="card-img-top" alt="{{ character.name }}">
+    <div class="card-body">
+      <h2 class="card-header">{{ character.name }}</h2>
+      <p class="card-text">{{ character.description }}</p>
+      <p class="card-text"><strong>Planet:</strong> {{ character.originPlanet.name }}</p>
+      <p class="card-text"><strong>Race:</strong> {{ character.race }}</p>
+      <p class="card-text"><strong>Ki:</strong> {{ character.ki }}</p>
+      <p class="card-text"><strong>Max Ki:</strong> {{ character.maxKi }}</p>
+      <p class="card-text"><strong>Affiliation:</strong> {{ character.affiliation }}</p>
+
+      <div *ngIf="character.transformations && character.transformations.length > 0" class="row mt-4">
+        <div class="col-12">
+          <h3><strong>Transformations:</strong></h3>
+          <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Ki</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let transformation of character.transformations">
+              <td>{{ transformation.name }}</td>
+              <td>{{ transformation.ki }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
